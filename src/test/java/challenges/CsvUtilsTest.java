@@ -18,6 +18,6 @@ public class CsvUtilsTest {
         File input2 = new File("src/main/resources/file2.csv");
         CsvUtils csvUtils = new CsvUtils();
         List<User> commonData = csvUtils.getCommonData(input1, input2);
-        assertThat(commonData).hasSize(1);
+        assertThat(commonData).hasSize(2);
     }
 }

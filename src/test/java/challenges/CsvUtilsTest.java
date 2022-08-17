@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatIOException;
 
 
 public class CsvUtilsTest {
@@ -37,5 +38,13 @@ public class CsvUtilsTest {
         CsvUtils csvUtils = new CsvUtils();
         List<User> commonData = csvUtils.getCommonData(input1, input2);
         assertThat(commonData).hasSize(3);
+    }
+
+    @Test
+    public void shouldThrowExceptionIfFileDoesNotExists() {
+        File input1 = new File("src/main/resources/file9.csv");
+        File input2 = new File("src/main/resources/file10.csv");
+        CsvUtils csvUtils = new CsvUtils();
+        assertThatIOException().isThrownBy(() -> csvUtils.getCommonData(input1, input2));
     }
 }
